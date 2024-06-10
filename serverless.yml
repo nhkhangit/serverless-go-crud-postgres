@@ -20,8 +20,8 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: go1.x
-  region: ap-southeast-1
+  runtime: provided.al2 
+  region: us-east-1
   environment: 
     RDS_CONN_STRING: postgres://<username>:<password>@<db url>
 
@@ -72,8 +72,6 @@ custom:
 
 package:
  individually: true
- exclude:
-   - ./**
 
 functions:
   # get:
@@ -90,40 +88,36 @@ functions:
   #             paths:
   #               name: true 
   postinsert:
-    handler: bin/postInsert
+    handler: bootstrap
     package:
-      include:
-        - ./bin/postInsert
+      artifact: bin/postInsert.zip
     events:
       - http:
           path: insert
           method: post
           private: true
   postupdate:
-    handler: bin/postUpdate
+    handler: bootstrap
     package:
-      include:
-        - ./bin/postUpdate
+      artifact: bin/postUpdate.zip
     events:
       - http:
           path: update
           method: post      
           private: true
   postdelete:
-    handler: bin/postDelete
+    handler: bootstrap
     package:
-      include:
-        - ./bin/postDelete
+      artifact: bin/postDelete.zip
     events:
       - http:
           path: delete
           method: post          
           private: true
   postgetusers:
-    handler: bin/postGetUsers
+    handler: bootstrap
     package:
-      include:
-        - ./bin/postGetUsers
+      artifact: bin/postGetUsers.zip
     events:
       - http:
           path: getusers
