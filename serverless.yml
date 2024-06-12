@@ -6,7 +6,7 @@ provider:
   runtime: provided.al2
   region: us-east-1
   environment:
-    RDS_CONN_STRING: "postgres://<username>:<password>@<host>"
+    RDS_CONN_STRING: "postgres://postgres:Khang123456@database-1.criywe6i4yum.ap-southeast-1.rds.amazonaws.com/postgres"
   apiGateway:
     metrics: true
     apiKeySourceType: AUTHORIZER
